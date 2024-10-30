@@ -1,0 +1,39 @@
+Requirements for the taskManager CRUD Application:
+- Folder Structure:
+
+        taskManager/
+    ├── node_modules/
+    ├── models/
+    │   └── task.js          # Task model class
+    ├── repositories/
+    │   └── taskRepo.js      # Repository class for tasks
+    ├── services/
+    │   └── taskService.js   # Business logic for tasks
+    ├── controllers/
+    │   └── taskController.js # Handles incoming requests
+    ├── routes/
+    │   └── taskRoutes.js    # Defines task-related routes
+    ├── app.js               # Entry point of your application
+    ├── package.json         # Project metadata and dependencies
+    └── package-lock.json
+
+- API Endpoints:
+        - GET /tasks:
+            - List all tasks in the system
+            - should support query parameters-> 
+                * completed= t/f (filter by the completion status)
+                * sortBy= {Date} (filter by the creation date) 
+        - GET /tasks/id:
+            - Retrieves a single task by its id matching
+            - Error handling -> 404 for tasks not found
+- Implement Middleware for JSON parsing
+
+
+
+
+
+The task resource model:
+- id (integer) - unique identifier
+- title (text) - task description
+- completed status (boolean)
+- createdAt (composite type - date format) - timestamp
