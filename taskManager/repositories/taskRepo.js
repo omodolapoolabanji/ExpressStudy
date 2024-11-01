@@ -3,24 +3,24 @@ class TaskRepository{
         this.tasks = []; // we opt in for an in memory store till we integrate database(s).
     }
 
-    getUniqueId(){
+    async getUniqueId(){
         // the ids are sequential in the system. We might have gaps after deletions are made though
-        return this.tasks.length + 1 
+        return this.tasks.length + 1;
     }
 
-    getAllTasks(){
+    async getAllTasks(){
         return this.tasks; 
     }
-
-    getById(id){
+    
+    async getById(id){
         result = this.tasks.find((e)=>e.id === id);
         return result; 
     }
-    createTask(task){
+    async createTask(task){
         this.tasks.push(task);
         return task; 
     }
-    updateTask(id, newTask){
+    async updateTask(id, newTask){
         // get the task from the repo using its id. If the task is found then reassign the tasks attributes
         task = this.getById(id);
         if (task){
@@ -32,9 +32,8 @@ class TaskRepository{
         return null;
     }
     
-    deleteTask(id){
+    async deleteTask(id){
         this.task = this.task.filter((t)=>t.id!==id);
-      
     }
 
     

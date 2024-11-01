@@ -1,9 +1,9 @@
 class TaskModel{
-    constructor( id, title, completed){
-        this.id = id;
+    constructor( {title, completed =false}){
+        this.id;
         this.title = title; 
         this.completed =completed;
-        this.createdAt= new Date().toLocaleString().split(',')[0]; 
+        this.createdAt= new Date(); 
     }
 
 }
