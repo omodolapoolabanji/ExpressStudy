@@ -5,4 +5,4 @@ This repo would document my progress as I get acquinted with express js for buil
     - install express into the dir -> `npm install express`
 
     Alternatively, you can generate a skeleton using the express generator
-    - `npx express-generator`
+    - ```npx express-generator```
