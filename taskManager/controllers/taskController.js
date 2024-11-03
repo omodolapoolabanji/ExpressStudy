@@ -1,3 +1,4 @@
+import TaskModel from "../models/task";
 export default class TaskController{
     constructor(taskService){
         this.taskService = taskService;
@@ -57,5 +58,43 @@ export default class TaskController{
     }
     //Controller for the POST method of route /tasks
     async createTask(req, res){
+        try{
+            const task = req.body
+            await this.taskService.createTask(task)
+            return res.status(200).json(task)
+        }catch(error){
+            console.error(error)
+            return res.status(500).json({message: this.genericInternalErrorMessage})
+        }
     }
-}
+    //Controller for the PUT method of route /tasks/:id
+    async updateTask(req, res){
+        try{
+            const taskId = req.params.id
+            if(!taskId || isNan(taskId)){
+                return res.status(400).json({message: 'Invalid ID provided.' })
+            }
+            const task = req.body
+            const updatedTask = await this.taskService.updateTask(taskId, task)
+            return res.status(200).json(updatedTask)
+        }
+        catch(error){
+            console.error(error)
+            return res.status(500).json({message: this.genericInternalErrorMessage})
+        }
+
+    }
+    //Controller for the DELETE method of route /tasks/:id
+    async deleteTask(req, res){
+        try{
+            const id = req.params.id
+            if(!id || isNan(id)){
+                return res.status(400).json({message: 'Invalid ID provided.' })
+            }
+            await this.taskService.deleteTask()
+        }
+        catch(error){
+            console.error(error)
+            return res.status(500).json({message: this.genericInternalErrorMessage})
+        }
+    }}

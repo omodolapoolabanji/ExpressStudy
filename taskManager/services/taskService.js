@@ -3,7 +3,7 @@ class TaskService{
     constructor(taskRepo){
         this.taskRepo = taskRepo; 
         this.notFoundErrorMessage = 'No task with matching ID found.'
-        this.notValidTaskMesage = 'This task is not valid!'
+        this.notValidTaskMessage = 'This task is not valid!'
     }
      /* for now the methods will be synchronous. Make sure to use async awaits when dealing with a db connection. 
      filters in form: {completed: boolean, sortBy : string -> 'asc'or 'desc'} 
@@ -71,6 +71,7 @@ class TaskService{
     }
 
     async updateTask(id, newTask){
+        
         try{
             return this.taskRepo.updateTask(id, newTask);
         }catch(error){

@@ -29,7 +29,7 @@ class TaskRepository{
         else{
             throw new Error('Task was not found in the system!');
         }
-        return null;
+        return task;
     }
     
     async deleteTask(id){
