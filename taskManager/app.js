@@ -1,4 +1,8 @@
 import express from 'express'
+import TaskRoutes from './routes/taskRoutes'
+import TaskService from './services/taskService'
+import TaskRepository from './repositories/taskRepo'
+import TaskController from './controllers/taskController'
 
 
 //intialize a new express application.the variable app represents a new web server. 
@@ -6,11 +10,16 @@ const app = express()
 // set a port 
 const port = 3000
 
+// do I have to explicitly state this after declaring the app variable as an express application instance
+app.use(express.json()) 
 
-//create a GET endpoint
-app.get('/', (request, response)=>{
-    response.send('')
-})
+// initialize props 
+const repository = new TaskRepository()
+const service = new TaskService(repository)
+const controller = new TaskController(service)
+const routes = new TaskRoutes(controller)
+
+app.use('api/',routes.getRouter() )
 
 //get the app to listen for connections on the port defined earlier
 //starts the express app and binds it to the port specified.
