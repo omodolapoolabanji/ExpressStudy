@@ -12,8 +12,8 @@ class TaskRepository{
         return this.tasks; 
     }
     
-    async getById(id){
-        result = this.tasks.find((e)=>e.id === id);
+    async getTaskById(id){
+        let result = this.tasks.find((e)=>e.id === id);
         return result; 
     }
     async createTask(task){
@@ -33,7 +33,7 @@ class TaskRepository{
     }
     
     async deleteTask(id){
-        this.task = this.task.filter((t)=>t.id!==id);
+        this.tasks = this.tasks.filter((t)=>t.id!==id);
     }
 
     

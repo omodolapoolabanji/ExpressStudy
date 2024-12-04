@@ -1,4 +1,3 @@
-import TaskRepository from "../repositories/taskRepo";
 class TaskService{
     constructor(taskRepo){
         this.taskRepo = taskRepo; 
@@ -39,7 +38,7 @@ class TaskService{
         
     }
     async getTaskById(id){
-        const result =  this.taskRepo.getTaskById(id)
+        const result =  await this.taskRepo.getTaskById(id)
         if(result){
             return result;
         }else{
@@ -66,8 +65,8 @@ class TaskService{
         if(!this.isValidTask(newTask)){
             throw new Error(this.notValidTaskMessage)
         }
-        newTask.id = this.taskRepo.getUniqueId(); 
-        return this.taskRepo.createTask(newTask);
+        newTask.id = await this.taskRepo.getUniqueId(); 
+        return await this.taskRepo.createTask(newTask);
     }
 
     async updateTask(id, newTask){

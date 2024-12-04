@@ -1,4 +1,3 @@
-import TaskModel from "../models/task";
 export default class TaskController{
     constructor(taskService){
         this.taskService = taskService;
@@ -40,7 +39,7 @@ export default class TaskController{
     //Controller for the GET method of route /tasks/:id
     async getTaskById(req, res){
         try{
-            const taskId = req.params.id
+            const taskId = Number(req.params.id)
             if(taskId){
                 if(isNaN(taskId)){
                     return res.status(400).json({message: 'The id provided is invalid!'})
@@ -60,8 +59,8 @@ export default class TaskController{
     async createTask(req, res){
         try{
             const task = req.body
-            await this.taskService.createTask(task)
-            return res.status(200).json(task)
+            
+            return res.status(200).json(await this.taskService.createTask(task))
         }catch(error){
             console.error(error)
             return res.status(500).json({message: this.genericInternalErrorMessage})
@@ -87,8 +86,8 @@ export default class TaskController{
     //Controller for the DELETE method of route /tasks/:id
     async deleteTask(req, res){
         try{
-            const id = req.params.id
-            if(!id || isNan(id)){
+            const id = Number(req.params.id)
+            if(!id || isNaN(id)){
                 return res.status(400).json({message: 'Invalid ID provided.' })
             }
             await this.taskService.deleteTask()

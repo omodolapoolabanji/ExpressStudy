@@ -1,8 +1,8 @@
 import express from 'express'
-import TaskRoutes from './routes/taskRoutes'
-import TaskService from './services/taskService'
-import TaskRepository from './repositories/taskRepo'
-import TaskController from './controllers/taskController'
+import TaskRoutes from './routes/taskRoutes.js'
+import TaskService from './services/taskService.js'
+import TaskRepository from './repositories/taskRepo.js'
+import TaskController from './controllers/taskController.js'
 
 
 //intialize a new express application.the variable app represents a new web server. 
@@ -19,7 +19,7 @@ const service = new TaskService(repository)
 const controller = new TaskController(service)
 const routes = new TaskRoutes(controller)
 
-app.use('api/',routes.getRouter() )
+app.use('/api',routes.getRouter() )
 
 //get the app to listen for connections on the port defined earlier
 //starts the express app and binds it to the port specified.

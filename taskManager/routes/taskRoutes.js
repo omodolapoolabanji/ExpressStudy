@@ -12,7 +12,7 @@ export default class TaskRoutes{
         })
         // route for getting individual task Id
         this.router.get('/tasks/:id', (req, res)=>{
-            this.taskController.getTaskId(req, res)
+            this.taskController.getTaskById(req, res)
         })
         //route for posting a task id 
         this.router.post('/tasks', (req,res)=>{
@@ -23,7 +23,7 @@ export default class TaskRoutes{
             this.taskController.updateTask(req,res)})
 
         //route for deleting tasks 
-        this.router.delete('/tasks/:id', (req, res)=>{
+        this.router.delete('/tasks/:id', async (req, res)=>{
             this.taskController.deleteTask(req,res)
         })
 
